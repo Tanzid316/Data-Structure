@@ -1,0 +1,41 @@
+#include <bits/stdc++.h>
+using namespace std;
+vector<int> vec;
+
+void LinearSearch(int l)
+{
+    int i,flag=0,store;
+    for(i=0; i<vec.size(); i++)
+    {
+        if(l == vec[i])
+        {
+            flag=1;
+            store = i;
+        }
+    }
+    if(flag == 1)
+    {
+        cout<<"Index = "<<store;
+    }
+    else
+    {
+        cout<<"Not found."<<endl;
+    }
+}
+
+int main() {
+    int n, x,key;
+    cin >> n;
+
+    //taking input.
+    for (int i = 0; i < n; i++) {
+        cin >> x;
+        vec.push_back(x);
+    }
+
+    cout<<"Enter your searching number : ";
+    cin>>key;
+    LinearSearch(key);
+
+    return 0;
+}
