@@ -1,0 +1,29 @@
+#include<iostream>
+#include<stdio.h>
+using namespace std;
+
+int main()
+{
+    int temp,minIndex,i,j,arr[] = {10, 5, 2, 8, 7};
+    
+    for(i=0; i<4; i++)
+    {
+        minIndex = i;
+        for(j=1; j<5; j++)
+        {
+            if(minIndex>arr[j]){
+                minIndex = j;
+            }
+        }
+        temp = arr[i];
+        arr[i] = arr[minIndex];
+        arr[minIndex] = temp;
+    }
+    
+    //printing output.
+    for(i=0; i<5; i++)
+    {
+        printf("%d ",arr[i]);
+    }
+    return 0;
+}
