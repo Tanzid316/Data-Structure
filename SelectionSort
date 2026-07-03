@@ -1,29 +1,48 @@
-#include<iostream>
-#include<stdio.h>
+#include<bits/stdc++.h>
 using namespace std;
 
-int main()
+vector <int> vec;
+
+void SelectionSort()
 {
-    int temp,minIndex,i,j,arr[] = {10, 5, 2, 8, 7};
-    
-    for(i=0; i<4; i++)
+    int temp, minIndex, i, j;
+    for(i = 0; i < vec.size(); i++)
     {
         minIndex = i;
-        for(j=1; j<5; j++)
+
+        for(j = i + 1; j < 5; j++)
         {
-            if(minIndex>arr[j]){
+            if(vec[minIndex] > vec[j])
+            {
                 minIndex = j;
             }
         }
-        temp = arr[i];
-        arr[i] = arr[minIndex];
-        arr[minIndex] = temp;
+
+        temp = vec[i];
+        vec[i] = vec[minIndex];
+        vec[minIndex] = temp;
     }
-    
-    //printing output.
-    for(i=0; i<5; i++)
+
+    for(i = 0; i < vec.size(); i++)
     {
-        printf("%d ",arr[i]);
+        printf("%d ", vec[i]);
     }
+
+}
+
+int main()
+{
+    int i,n,x;
+
+    cin>>n;
+
+    for(i=0; i<n; i++)
+    {
+        cin>>x;
+        vec.push_back(x);
+    }
+
+    SelectionSort();
+
     return 0;
 }
