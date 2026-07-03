@@ -6,11 +6,11 @@ vector <int> vec;
 void SelectionSort()
 {
     int temp, minIndex, i, j;
-    for(i = 0; i < vec.size(); i++)
+    for(i = 0; i < vec.size()-1; i++)
     {
         minIndex = i;
 
-        for(j = i + 1; j < 5; j++)
+        for(j = i + 1; j < vec.size(); j++)
         {
             if(vec[minIndex] > vec[j])
             {
