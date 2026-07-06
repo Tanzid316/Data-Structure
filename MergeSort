@@ -1,0 +1,106 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+vector<int> vec;
+vector<int> Temp;
+
+
+void print()
+{
+    for(int i = 0; i < vec.size(); i++)
+    {
+        cout << vec[i] << " ";
+    }
+    cout << endl;
+}
+
+//merge kore two sorted part ke.
+void merge(int low, int mid, int high)
+{
+    int i = low;     //left
+    int j = mid + 1; //right
+    int k = low;
+
+    while(i <= mid && j <= high)
+    {
+        if(vec[i] <= vec[j])
+        {
+            Temp[k] = vec[i];
+            i = i + 1;
+        }
+        else
+        {
+            Temp[k] = vec[j];
+            j = j + 1;
+        }
+        k = k + 1;
+    }
+
+
+    while(i <= mid)
+    {
+        Temp[k] = vec[i];
+        i = i + 1;
+        k = k + 1;
+    }
+
+
+    while(j <= high)
+    {
+        Temp[k] = vec[j];
+        j = j + 1;
+        k = k + 1;
+    }
+
+
+    for(int x = low; x <= high; x++)
+    {
+        vec[x] = Temp[x];
+    }
+}
+
+
+void mergeSort(int low, int high)
+{
+    if(low < high)
+    {
+        int mid = (low + high) / 2;
+
+        mergeSort(low, mid);      //first left sorted part
+        /*
+        1. ei khane right side false na howea porjonto right
+        side er part tai cholte thakbe.
+        2. right side er ta false hole then left side er kaj
+        shuru hobe .
+        3. left side false hole then next function er kaj
+        shuru hobe.
+        */
+        mergeSort(mid + 1, high); //then right sorted part
+        merge(low, mid, high);
+    }
+}
+
+int main()
+{
+    int n, x;
+    cin >> n;
+
+
+    vec.resize(n);
+    Temp.resize(n);
+
+    for(int i = 0; i < n; i++)
+    {
+        cin >> vec[i];
+    }
+
+    cout << "Before : ";
+    print();
+
+    mergeSort(0, n - 1);
+
+    cout << "After : ";
+    print();
+
+    return 0;
+}
