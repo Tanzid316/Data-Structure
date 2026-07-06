@@ -1,72 +1,57 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
-vector<int> vec;
-vector<int> Temp;
-
-
-void print()
+void Merge(vector<int>& A, int low, int mid, int high)
 {
-    for(int i = 0; i < vec.size(); i++)
-    {
-        cout << vec[i] << " ";
-    }
-    cout << endl;
-}
-
-//merge kore two sorted part ke.
-void merge(int low, int mid, int high)
-{
-    int i = low;     //left
-    int j = mid + 1; //right
+    int i = low;
+    int j = mid + 1;
     int k = low;
+
+    vector<int> Temp(A.size());
 
     while(i <= mid && j <= high)
     {
-        if(vec[i] <= vec[j])
+        if(A[i] <= A[j])
         {
-            Temp[k] = vec[i];
+            Temp[k] = A[i];
             i = i + 1;
         }
         else
         {
-            Temp[k] = vec[j];
+            Temp[k] = A[j];
             j = j + 1;
         }
+
         k = k + 1;
     }
 
-
     while(i <= mid)
     {
-        Temp[k] = vec[i];
+        Temp[k] = A[i];
         i = i + 1;
         k = k + 1;
     }
 
-
     while(j <= high)
     {
-        Temp[k] = vec[j];
+        Temp[k] = A[j];
         j = j + 1;
         k = k + 1;
     }
 
-
     for(int x = low; x <= high; x++)
     {
-        vec[x] = Temp[x];
+        A[x] = Temp[x];
     }
 }
 
-
-void mergeSort(int low, int high)
+void MergeSort(vector<int>& A, int low, int high)
 {
     if(low < high)
     {
         int mid = (low + high) / 2;
 
-        mergeSort(low, mid);      //first left sorted part
+        MergeSort(A, low, mid);  //first left sorted part
         /*
         1. ei khane right side false na howea porjonto right
         side er part tai cholte thakbe.
@@ -75,32 +60,40 @@ void mergeSort(int low, int high)
         3. left side false hole then next function er kaj
         shuru hobe.
         */
-        mergeSort(mid + 1, high); //then right sorted part
-        merge(low, mid, high);
+        MergeSort(A, mid + 1, high);
+
+        Merge(A, low, mid, high);
     }
+}
+
+void printArray(vector<int>& A)
+{
+    for(int i = 0; i < A.size(); i++)
+    {
+        cout << A[i] << " ";
+    }
+    cout << endl;
 }
 
 int main()
 {
-    int n, x;
+    int n;
     cin >> n;
 
-
-    vec.resize(n);
-    Temp.resize(n);
+    vector<int> A(n);
 
     for(int i = 0; i < n; i++)
     {
-        cin >> vec[i];
+        cin >> A[i];
     }
 
-    cout << "Before : ";
-    print();
+    cout << "Before Sorting: ";
+    printArray(A);
 
-    mergeSort(0, n - 1);
+    MergeSort(A, 0, n - 1);
 
-    cout << "After : ";
-    print();
+    cout << "After Sorting: ";
+    printArray(A);
 
     return 0;
 }
