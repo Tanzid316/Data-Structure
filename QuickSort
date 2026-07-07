@@ -1,0 +1,58 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int Partition(int A[], int low, int high)
+{
+    int pivot = A[low];
+    int i = low;
+    int j = high;
+
+    while(i < j)
+    {
+        while(A[i] <= pivot && i <= high - 1)
+        {
+            i++;
+        }
+
+        while(A[j] > pivot && j >= low + 1)
+        {
+            j--;
+        }
+
+        if(i < j)
+        {
+            swap(A[i], A[j]);
+        }
+    }
+
+    swap(A[low], A[j]);
+
+    return j;
+}
+
+void Quick_Sort(int A[], int low, int high)
+{
+    if(low < high)
+    {
+        int pi = Partition(A, low, high);
+
+        Quick_Sort(A, low, pi - 1);
+        Quick_Sort(A, pi + 1, high);
+    }
+}
+
+int main()
+{
+    int A[] = {50, 23, 9, 18, 61, 32};
+    int n = 6;
+
+    Quick_Sort(A, 0, n - 1);
+
+    cout << "Sorted Array: ";
+    for(int i = 0; i < n; i++)
+    {
+        cout << A[i] << " ";
+    }
+
+    return 0;
+}
