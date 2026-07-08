@@ -1,0 +1,143 @@
+/*
+question : 
+https://imgur.com/831nymd
+*/
+#include<bits/stdc++.h>
+using namespace std;
+
+struct Book {
+    string title;
+    string author;
+    int year;
+};
+
+vector<Book> books;
+int i, j, n;
+
+void selection_sort()
+{
+    int minIndex;
+    Book temp;
+    for (i = 0; i < books.size() - 1; i++)
+    {
+        minIndex = i;
+        for (j = i + 1; j < books.size(); j++)
+        {
+            // Year descending
+            if (books[minIndex].year < books[j].year)
+            {
+                minIndex = j;
+            }
+            // Same year, author ascending
+            else if (books[minIndex].year == books[j].year)
+            {
+                if (books[minIndex].author > books[j].author)
+                {
+                    minIndex = j;
+                }
+                else if (books[minIndex].author == books[j].author)
+                {
+                    // Same author, title ascending
+                    if (books[minIndex].title > books[j].title)
+                    {
+                        minIndex = j;
+                    }
+                }
+            }
+        }
+        temp = books[minIndex];
+        books[minIndex] = books[i];
+        books[i] = temp;
+    }
+}
+
+void print()
+{
+    for (i = 0; i < books.size(); i++)
+    {
+        cout << books[i].title << ", " << books[i].author << ", " << books[i].year << endl;
+    }
+}
+
+int main()
+{
+    string line, title, author;
+    int year;
+    char ch;
+
+    cin >> n;
+    cin.ignore(); // newline ignore
+
+    for (i = 0; i < n; i++)
+    {
+        getline(cin, line);
+
+        // Last comma er age sob title, last comma er pore year
+        int lastComma = -1;
+        for (j = 0; j < line.size(); j++)
+        {
+            if (line[j] == ',')
+            {
+                lastComma = j;
+            }
+        }
+
+        // Year extract (last comma er pore)
+        year = 0;
+        for (j = lastComma + 1; j < line.size(); j++)
+        {
+            if (line[j] >= '0' && line[j] <= '9')
+            {
+                year = year * 10 + (line[j] - '0');
+            }
+        }
+
+        // Title, author alada (last comma er age)
+        string beforeYear = "";
+        for (j = 0; j < lastComma; j++)
+        {
+            beforeYear += line[j];
+        }
+
+        // BeforeYear theke first comma khujbo
+        int firstComma = -1;
+        for (j = 0; j < beforeYear.size(); j++)
+        {
+            if (beforeYear[j] == ',')
+            {
+                firstComma = j;
+                break;
+            }
+        }
+
+        // Title extract
+        title = "";
+        for (j = 0; j < firstComma; j++)
+        {
+            title += beforeYear[j];
+        }
+
+        // Author extract (first comma er pore, leading space skip)
+        author = "";
+        for (j = firstComma + 1; j < beforeYear.size(); j++)
+        {
+            // leading space skip
+            if (author.size() == 0 && beforeYear[j] == ' ')
+            {
+                continue;
+            }
+            author += beforeYear[j];
+        }
+
+        Book b;
+        b.title = title;
+        b.author = author;
+        b.year = year;
+        books.push_back(b);
+    }
+
+    selection_sort();
+    print();
+
+    return 0;
+}
