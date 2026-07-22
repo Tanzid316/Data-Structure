@@ -52,14 +52,18 @@ void MergeSort(vector<int>& A, int low, int high)
         int mid = (low + high) / 2;
 
         MergeSort(A, low, mid);  //first left sorted part
+
         /*
-        1. ei khane right side false na howea porjonto right
-        side er part tai cholte thakbe.
-        2. right side er ta false hole then left side er kaj
-        shuru hobe .
-        3. left side false hole then next function er kaj
-        shuru hobe.
+        1. First, the left part keeps dividing until only one
+        element remains, meaning low == high.
+
+        2. After the left call returns, the right part starts
+        dividing until only one element remains.
+
+        3. When both left and right parts are finished,
+        Merge() combines them in sorted order.
         */
+
         MergeSort(A, mid + 1, high);
 
         Merge(A, low, mid, high);
