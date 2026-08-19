@@ -46,7 +46,7 @@ int main()
             }
             else
             {
-                cout<<"Invalid stack"<<endl;
+                cout<<"Invalid operator."<<endl;
             }
             s.push(res);
         }
