@@ -1,0 +1,30 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    int vertex = 4;
+    vector<vector<int>> graph(vertex);
+
+    graph[0].push_back(1);
+    graph[0].push_back(2);
+
+    graph[1].push_back(0);
+    graph[1].push_back(3);
+
+    graph[2].push_back(0);
+
+    graph[3].push_back(1);
+
+    int i,j;
+
+    for(i=0; i<graph.size(); i++)
+    {
+        cout<<i<<" -> ";
+        for(j=0; j<graph[i].size(); j++)
+        {
+            cout<<graph[i][j]<<" ";
+        }
+        cout<<endl;
+    }
+    return 0;
+}
