@@ -9,6 +9,8 @@ int main()
     q.push(7);
     q.push(21);
 
+    cout<<"Size : "<<q.size()<<endl;
+
     q.pop();
 
     while(!q.empty())
@@ -16,5 +18,7 @@ int main()
         cout<<q.front()<<" ";
         q.pop();
     }
+
+    cout<<"\nSize : "<<q.size()<<endl;
     return 0;
 }
