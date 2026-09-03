@@ -1,4 +1,8 @@
 //BFS
+/*
+Here is the algorithm and graph image : 
+https://imgur.com/Qy07m8F
+*/
 #include<bits/stdc++.h>
 using namespace std;
 
