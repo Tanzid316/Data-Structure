@@ -1,0 +1,49 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    vector <int> vec;
+    int sizes,i,x;
+
+    cout<<"Enter the Array size : ";
+    cin>>sizes;
+
+    //taking array inputs.
+    for(i=0; i<sizes; i++)
+    {
+        cin>>x;
+        vec.push_back(x);
+    }
+
+    //find smallest non leaf node.
+    int index;
+
+    index = (sizes/2)-1;
+
+    int LeftChildIndex,RightChildIndex;
+
+    while(index >= 0)
+    {
+        int parent = index;
+        LeftChildIndex = (2*index)+1;
+        RightChildIndex = (2*index)+2;
+
+        if(vec[parent] >= vec[LeftChildIndex])
+        {
+            swap(vec[parent],vec[LeftChildIndex]);
+        }
+        else if(vec[parent] >= vec[RightChildIndex])
+        {
+            swap(vec[parent],vec[RightChildIndex]);
+        }
+        index--;
+
+    }
+
+    for(i=0; i<vec.size(); i++)
+    {
+        cout<<vec[i]<<" ";
+    }
+
+    return 0;
+}
