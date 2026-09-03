@@ -1,38 +1,23 @@
-#include <bits/stdc++.h>
+//BFS
+#include<bits/stdc++.h>
 using namespace std;
 
-void BFS(vector<vector<int>>& G, int start)
-//outer vector=vertex and inner vector=neighbors
+void BFS(vector<vector<int>>&graph,int v)
 {
-    // marked = [False] * G.size()
-    vector<bool> marked(G.size(), false);
-
-    // queue = [start]
-    queue<int> q;
-    q.push(start);
-
-    // while queue is not empty
-    while (!q.empty())
+    vector<bool> marked (graph.size(),false);
+    queue<int>q;
+    q.push(v);
+    while(!q.empty())
     {
-        // take the first vertex from queue
-        int v = q.front();
+        v = q.front();
         q.pop();
-
-        // if vertex is not visited
-        if (!marked[v])
+        if(!marked[v])
         {
-            // visit the vertex
-            cout << v << " ";
-
-            // mark it visited
+            cout<<v<<" ";
             marked[v] = true;
-
-            // check all neighbours of v
-            for (int i = 0; i < G[v].size(); i++)
+            for(int w : graph[v])
             {
-                int w = G[v][i];
-
-                if (!marked[w])
+                if(!marked[w])
                 {
                     q.push(w);
                 }
@@ -43,16 +28,13 @@ void BFS(vector<vector<int>>& G, int start)
 
 int main()
 {
-    vector<vector<int>> G =
-    {
-        {1, 3, 2},    // neighbours of 0
-        {0, 3},       // neighbours of 1
-        {0, 3},       // neighbours of 2
-        {0, 1, 2, 4}, // neighbours of 3
-        {3}           // neighbours of 4
+    vector<vector<int>>graph{
+        {1,2,3},
+        {0,3},
+        {0,3},
+        {0,1,2,4},
+        {3}
     };
-
-    BFS(G, 0);
-
+    BFS(graph,0); //graph and starting vertex.
     return 0;
 }
