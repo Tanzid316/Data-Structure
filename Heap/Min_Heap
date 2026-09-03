@@ -5,10 +5,11 @@ int main()
     vector <int> vec;
     int sizes,i,x;
 
-    cout<<"Enter the Array size : ";
-    cin>>sizes;
+    printf("Enter the Array size : ");
+    scanf("%d",&sizes);
 
     //taking array inputs.
+    printf("Enter the array Input : ");
     for(i=0; i<sizes; i++)
     {
         cin>>x;
@@ -40,6 +41,7 @@ int main()
 
     }
 
+    printf("\nMin Heap : ");
     for(i=0; i<vec.size(); i++)
     {
         cout<<vec[i]<<" ";
