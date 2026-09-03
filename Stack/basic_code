@@ -1,0 +1,22 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    stack<int> s;
+
+    s.push(25);
+    s.push(30);
+    s.push(45);
+    s.push(89);
+    s.push(82);
+    s.push(205);
+    s.push(8);
+
+    while(!s.empty())
+    {
+        cout<<s.top()<<endl;
+        s.pop();
+    }
+
+    return 0;
+}
