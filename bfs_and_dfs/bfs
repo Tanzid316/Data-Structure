@@ -2,6 +2,32 @@
 /*
 Here is the algorithm and graph image : 
 https://imgur.com/Qy07m8F
+
+Algorithm                         C++
+
+marked = [False] * G.size()   →   vector<bool> marked(G.size(), false);
+
+queue = [v]                   →   queue<int> q;
+                                  q.push(v);
+
+while len(queue) > 0          →   while (!q.empty())
+
+v = queue.pop()               →   v = q.front();
+                                  q.pop();
+
+if not marked[v]              →   if (!marked[v])
+
+visit(v)                      →   cout << v << " ";
+
+marked[v] = True              →   marked[v] = true;
+
+for w in G.neighbors(v)       →   for (int w : G[v])
+
+if not marked[w]              →   if (!marked[w])
+
+queue.append(w)               →   q.push(w);
+
+
 */
 #include<bits/stdc++.h>
 using namespace std;
